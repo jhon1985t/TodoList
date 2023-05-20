@@ -1,4 +1,7 @@
 package com.jhonjto.todolist
 
-class TodoListApp {
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class TodoListApp: Application()
