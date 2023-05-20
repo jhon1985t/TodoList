@@ -19,9 +19,9 @@ class RoomDataSource(
             todoListDao.todoListCount() <= 0
         }
 
-    override suspend fun saveTodoList(todoList: List<TodoList>) =
+    override suspend fun saveTodoList(todoList: TodoList) =
         withContext(dispatcher) {
-            todoListDao.insert(todoList.map { it.toRoomTodoList() })
+            todoListDao.insert(todoList.toRoomTodoList())
         }
 
     override suspend fun getAll(): List<TodoList> =

@@ -4,7 +4,7 @@ import com.jhonjto.domain.TodoList
 
 interface LocalDataSource {
     suspend fun isEmpty(): Boolean
-    suspend fun saveTodoList(todoList: List<TodoList>)
+    suspend fun saveTodoList(todoList: TodoList)
     suspend fun getAll(): List<TodoList>
     suspend fun findById(id: Int): TodoList
     suspend fun updateTodoList(todoList: TodoList)
