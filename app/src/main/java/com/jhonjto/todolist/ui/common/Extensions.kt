@@ -3,6 +3,7 @@ package com.jhonjto.todolist.ui.common
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.lifecycle.get
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jhonjto.todolist.TodoListApp
+import java.io.Serializable
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.properties.Delegates
@@ -60,6 +62,14 @@ inline fun <reified T : ViewModel> FragmentActivity.getViewModel(crossinline fac
 fun createdDateFormatted(date: LocalDateTime): String {
     val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")
     return date.format(formatter)
+}
+
+fun <T : Serializable?> getSerializable(activity: Activity, name: String, clazz: Class<T>): T
+{
+    return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+        activity.intent.getSerializableExtra(name, clazz)!!
+    else
+        activity.intent.getSerializableExtra(name) as T
 }
 
 val Context.app: TodoListApp

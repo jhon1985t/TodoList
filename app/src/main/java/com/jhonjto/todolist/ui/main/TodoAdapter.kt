@@ -23,20 +23,20 @@ class TodoAdapter(private val listener: (TodoList) -> Unit):
         return TodoViewHolder(view)
     }
 
+    override fun getItemCount(): Int = todoList.size
+
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val item = todoList[position]
         holder.bind(item)
         holder.itemView.setOnClickListener { listener(item) }
     }
 
-    override fun getItemCount(): Int = todoList.size
-
     class TodoViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val binding = ListItemBinding.bind(view)
         fun bind(todoList: TodoList) = with(binding) {
             tvTitle.text = todoList.title
             tvNote.text = todoList.note
-            tvDate.text = createdDateFormatted(todoList.date!!)
+            tvDate.text = createdDateFormatted(todoList.date)
         }
     }
 }

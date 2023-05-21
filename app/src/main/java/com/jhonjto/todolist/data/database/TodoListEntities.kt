@@ -10,8 +10,8 @@ import java.time.LocalDateTime
 @Parcelize
 data class TodoListEntities(
     @PrimaryKey(autoGenerate = true) val id: Int? = null,
-    val title: String? = null,
-    val note: String? = null,
+    val title: String?,
+    val note: String?,
     val date: LocalDateTime = LocalDateTime.now(),
     val isComplete: Boolean
 ): Parcelable

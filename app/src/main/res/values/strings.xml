@@ -4,4 +4,7 @@
     <string name="a_adir_nota">Añadir Nota</string>
     <string name="titulo">Titulo</string>
     <string name="nota">Nota</string>
+    <string name="title">Title</string>
+    <string name="note">Note</string>
+    <string name="date">Date</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jhonjto.todolist.databinding.ActivityMainBinding
 import com.jhonjto.todolist.ui.add.AddTodoActivity
 import com.jhonjto.todolist.ui.common.startActivity
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val manager = LinearLayoutManager(this)
+        binding.recycler.layoutManager = manager
+        binding.recycler.setHasFixedSize(true)
         adapter = TodoAdapter(viewModel::onTodoListClicked)
         binding.recycler.adapter = adapter
         viewModel.model.observe(this, Observer(::updateUi))
