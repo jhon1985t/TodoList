@@ -5,7 +5,7 @@ import androidx.room.*
 @Dao
 interface TodoListDao {
 
-    @Query("SELECT * FROM TodoListEntities ORDER BY (favorite is true) DESC")
+    @Query("SELECT * FROM TodoListEntities ORDER BY date DESC")
     fun getAll(): List<TodoListEntities>
 
     @Query("SELECT * FROM TodoListEntities WHERE id = :id")
@@ -18,11 +18,11 @@ interface TodoListDao {
     fun insert(todoListEntities: TodoListEntities)
 
     @Update
-    suspend fun updateTodoList(todoListEntities: TodoListEntities)
+    fun updateTodoList(todoListEntities: TodoListEntities)
 
     @Query("DELETE FROM TodoListEntities WHERE id = :id")
     fun deleteByUserId(id: Int)
 
-    @Delete
+    @Query("DELETE FROM TodoListEntities")
     fun deleteAll()
 }

@@ -4,48 +4,46 @@ import com.jhonjto.data.source.LocalDataSource
 import com.jhonjto.domain.TodoList
 import com.jhonjto.todolist.data.toDomainTodoList
 import com.jhonjto.todolist.data.toRoomTodoList
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class RoomDataSource(
-    db: TodoListDatabase,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
+    db: TodoListDatabase
 ): LocalDataSource {
     private val todoListDao = db.todoListDao()
 
     override suspend fun isEmpty(): Boolean =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.todoListCount() <= 0
         }
 
     override suspend fun saveTodoList(todoList: TodoList) =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.insert(todoList.toRoomTodoList())
         }
 
     override suspend fun getAll(): List<TodoList> =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.getAll().map { it.toDomainTodoList() }
         }
 
     override suspend fun findById(id: Int): TodoList =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.findById(id).toDomainTodoList()
         }
 
     override suspend fun updateTodoList(todoList: TodoList) =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.updateTodoList(todoList.toRoomTodoList())
         }
 
     override suspend fun deleteById(id: Int) =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.deleteByUserId(id)
         }
 
     override suspend fun deleteAll() =
-        withContext(dispatcher) {
+        withContext(Dispatchers.IO) {
             todoListDao.deleteAll()
         }
 }
