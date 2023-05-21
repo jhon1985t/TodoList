@@ -43,6 +43,10 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun onTodoListClicked(todoList: TodoList) {
+        _model.value = UiModel.Navigation(todoList)
+    }
+
     override fun onCleared() {
         destroyScope()
         super.onCleared()
