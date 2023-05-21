@@ -1,5 +1,6 @@
 package com.jhonjto.todolist.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
         adapter = TodoAdapter(viewModel::onTodoListClicked)
         binding.recycler.adapter = adapter
         viewModel.model.observe(this, Observer(::updateUi))
+
+        binding.fabAddTodo.setOnClickListener {
+            startActivity<AddTodoActivity> {}
+        }
     }
 
     private fun updateUi(model: MainViewModel.UiModel) {
@@ -34,8 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         when (model) {
             is MainViewModel.UiModel.Content -> adapter.todoList = model.todoList
-            is MainViewModel.UiModel.Navigation -> startActivity<AddTodoActivity> {
-                putExtra(AddTodoActivity.TODO_LIST, model.todoList.id)
+            is MainViewModel.UiModel.Navigation -> {
+                val intent = Intent(this, AddTodoActivity::class.java)
+                intent.putExtra(AddTodoActivity.TODO_LIST, model.todoList as java.io.Serializable)
+                startActivity(intent)
             }
             MainViewModel.UiModel.RequestTodoList -> {
                 viewModel.onCallTodoList()

@@ -7,8 +7,8 @@ fun TodoList.toRoomTodoList(): TodoListEntities = TodoListEntities(
     id,
     title,
     note,
-    date,
-    isComplete
+    date!!,
+    isComplete!!
 )
 
 fun TodoListEntities.toDomainTodoList(): TodoList = TodoList(

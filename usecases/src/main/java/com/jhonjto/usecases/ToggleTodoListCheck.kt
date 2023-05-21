@@ -7,6 +7,6 @@ class ToggleTodoListCheck(
     private val todoListRepository: TodoListRepository
 ) {
     suspend fun invoke(todoList: TodoList): TodoList = with(todoList)  {
-        copy(isComplete = !isComplete).also { todoListRepository.update(it) }
+        copy(isComplete = !isComplete!!).also { todoListRepository.update(it) }
     }
 }

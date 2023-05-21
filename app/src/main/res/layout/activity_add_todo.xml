@@ -21,14 +21,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_back_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 app:srcCompat="@drawable/ic_arrow_back_24" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,19 +37,19 @@
                 android:padding="8dp"
                 app:srcCompat="@drawable/ic_baseline_check_24" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:layout_toLeftOf="@+id/img_check"
+                android:layout_toStartOf="@+id/img_check"
                 android:padding="8dp"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,13 +58,13 @@
         android:layout_marginEnd="16dp"
         android:background="@null"
         android:ems="10"
-        android:hint="Title"
+        android:hint="@string/titulo"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_note"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -72,11 +72,12 @@
         android:background="@null"
         android:ems="10"
         android:gravity="top"
-        android:hint="Todo Note"
+        android:hint="@string/nota"
         android:inputType="textMultiLine"
         android:lineSpacingMultiplier="1.8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/et_title"
         app:layout_constraintStart_toStartOf="@+id/et_title"
         app:layout_constraintTop_toBottomOf="@+id/et_title" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

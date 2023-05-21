@@ -58,10 +58,6 @@ C
 domain/build.gradle,a\3\a3021bb5ba623a461b5fdb89ae51923a4945c354
 e
 5app/src/main/java/com/jhonjto/todolist/TodoListApp.kt,6\b\6be5486cb31057c1dafc75c8ee885181d7fdf351
-v
-Fdata/src/main/java/com/jhonjto/data/repositories/TodoListRepository.kt,b\4\b48e67044703313678b37fbc54f72636b7a947f7
-m
-=data/src/main/java/com/jhonjto/data/source/LocalDataSource.kt,7\8\78e7620dedc6e86b704f311d59accec37fb4238d
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 A
@@ -78,8 +74,6 @@ n
 >app/src/main/java/com/jhonjto/todolist/ui/common/Converters.kt,d\2\d203423ab8d5586da73073be9fdb9ea384362c03
 g
 7app/src/main/java/com/jhonjto/todolist/di/DataModule.kt,c\2\c27e374f062e94026f7cad7e9f8ca488cc4f301b
-d
-4app/src/main/java/com/jhonjto/todolist/ui/main/di.kt,e\1\e1153645a58c06715f7ce7194235cf0ed6517a80
 m
 =usecases/src/main/java/com/jhonjto/usecases/GetAllTodoList.kt,c\e\ce31e9a52d45987bf45853762bbd1cee06d06044
 i

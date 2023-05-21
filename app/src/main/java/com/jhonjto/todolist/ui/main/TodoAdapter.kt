@@ -36,7 +36,7 @@ class TodoAdapter(private val listener: (TodoList) -> Unit):
         fun bind(todoList: TodoList) = with(binding) {
             tvTitle.text = todoList.title
             tvNote.text = todoList.note
-            tvDate.text = createdDateFormatted(todoList.date)
+            tvDate.text = createdDateFormatted(todoList.date!!)
         }
     }
 }
