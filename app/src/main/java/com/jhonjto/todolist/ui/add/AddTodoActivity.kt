@@ -5,9 +5,13 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.jhonjto.domain.TodoList
+import com.jhonjto.todolist.R
 import com.jhonjto.todolist.databinding.ActivityAddTodoBinding
+import com.jhonjto.todolist.ui.common.startActivity
+import com.jhonjto.todolist.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -36,44 +40,91 @@ class AddTodoActivity : AppCompatActivity() {
 
         val bundle: Bundle? = intent.extras
 
-        bundle?.let {
-            bundle.apply {
-                val todoList = com.jhonjto.todolist.ui.common.getSerializable(this@AddTodoActivity, TODO_LIST, TodoList::class.java)
+        receiver(bundle)
 
-                isComplete = todoList.isComplete == true
-                if (isComplete) {
-                    binding.imgCheck.visibility = View.INVISIBLE
-                } else {
-                    binding.imgCheck.visibility = View.VISIBLE
-                }
-                todoList.id?.let { result -> viewModel.findTodoListById(todoListId = result) }
-            }
+        createNote()
+
+        deleteById(bundle)
+
+        binding.fabCheck.setOnClickListener { viewModel.onCheckClicked() }
+
+        binding.imgBackArrow.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
 
+        viewModel.model.observe(this, Observer(::updateUi))
+    }
+
+    private fun deleteById(bundle: Bundle?) {
+        binding.imgDelete.setOnClickListener {
+            bundle?.let {
+                bundle.apply {
+                    val todoList = com.jhonjto.todolist.ui.common.getSerializable(
+                        this@AddTodoActivity,
+                        TODO_LIST,
+                        TodoList::class.java
+                    )
+                    todoList.id?.let { result -> viewModel.deleteById(id = result) }
+                    startActivity<MainActivity> { }
+                }
+            }
+        }
+    }
+
+    private fun createNote() {
         binding.imgCheck.setOnClickListener {
             val title = binding.etTitle.text.toString()
             val note = binding.etNote.text.toString()
 
             if (title.isNotEmpty() && note.isNotEmpty()) {
-                val dateTime = LocalDateTime.parse(getDateTime(), DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS"))
-                viewModel.createNewTodoList(TodoList(id = null, title = title, note = note, date = dateTime, isComplete = false))
+                val dateTime = LocalDateTime.parse(
+                    getDateTime(),
+                    DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")
+                )
+                viewModel.createNewTodoList(
+                    TodoList(
+                        id = null,
+                        title = title,
+                        note = note,
+                        date = dateTime,
+                        isComplete = false
+                    )
+                )
+                startActivity<MainActivity> { }
             } else {
-                Toast.makeText(this, "Porfavor ingrese un Titulo y una Nota", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Porfavor ingrese un Titulo y una Nota", Toast.LENGTH_LONG)
+                    .show()
                 return@setOnClickListener
             }
         }
+    }
 
-        binding.imgBackArrow.setOnClickListener {
-            onBackPressed()
+    private fun receiver(bundle: Bundle?) {
+        bundle?.let {
+            bundle.apply {
+                val todoList = com.jhonjto.todolist.ui.common.getSerializable(
+                    this@AddTodoActivity,
+                    TODO_LIST,
+                    TodoList::class.java
+                )
+                todoList.id?.let { result -> viewModel.findTodoListById(todoListId = result) }
+            }
         }
-
-        viewModel.model.observe(this, Observer(::updateUi))
     }
 
     private fun updateUi(model: AddTodoViewModel.UiModel) = with(binding) {
         val todoList = model.todoList
         binding.etTitle.setText(todoList.title)
         binding.etNote.setText(todoList.note)
+
+        val icon = if (todoList.isComplete) R.drawable.ic_baseline_check_complete_24 else R.drawable.ic_baseline_check_incomplete_24
+        fabCheck.setImageDrawable(ContextCompat.getDrawable(this@AddTodoActivity, icon))
+
+        if (todoList.isComplete) {
+            binding.imgCheck.visibility = View.INVISIBLE
+        } else {
+            binding.imgCheck.visibility = View.VISIBLE
+        }
     }
 
     private fun getDateTime(): String? {

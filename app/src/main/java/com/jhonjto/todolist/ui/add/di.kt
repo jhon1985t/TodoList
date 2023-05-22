@@ -2,6 +2,7 @@ package com.jhonjto.todolist.ui.add
 
 import com.jhonjto.data.repositories.TodoListRepository
 import com.jhonjto.usecases.CreateNewTodoList
+import com.jhonjto.usecases.DeleteById
 import com.jhonjto.usecases.TodoListById
 import com.jhonjto.usecases.ToggleTodoListCheck
 import dagger.Module
@@ -24,4 +25,8 @@ class AddTodoActivityModule {
     @Provides
     fun createNewTodoListProvider(todoListRepository: TodoListRepository) =
         CreateNewTodoList(todoListRepository)
+
+    @Provides
+    fun deleteByIdProvider(todoListRepository: TodoListRepository) =
+        DeleteById(todoListRepository)
 }

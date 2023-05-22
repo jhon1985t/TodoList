@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.jhonjto.domain.TodoList
 import com.jhonjto.todolist.ui.common.ScopedViewModel
 import com.jhonjto.usecases.CreateNewTodoList
+import com.jhonjto.usecases.DeleteById
 import com.jhonjto.usecases.TodoListById
 import com.jhonjto.usecases.ToggleTodoListCheck
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,8 @@ import javax.inject.Inject
 class AddTodoViewModel @Inject constructor(
     private val findTodoListById: TodoListById,
     private val toggleTodoListCheck: ToggleTodoListCheck,
-    private val createNewTodoList: CreateNewTodoList
+    private val createNewTodoList: CreateNewTodoList,
+    private val deleteById: DeleteById
 ): ScopedViewModel() {
 
     class UiModel(val todoList: TodoList)
@@ -32,7 +34,11 @@ class AddTodoViewModel @Inject constructor(
         createNewTodoList.invoke(todoList)
     }
 
-    fun onFavoriteClicked() = launch {
+    fun deleteById(id: Int) = launch {
+        deleteById.invoke(id)
+    }
+
+    fun onCheckClicked() = launch {
         _model.value?.todoList?.let {
             _model.value = UiModel(toggleTodoListCheck.invoke(it))
         }
