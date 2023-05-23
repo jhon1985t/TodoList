@@ -92,20 +92,12 @@ d
 4app/src/main/java/com/jhonjto/todolist/ui/main/di.kt,e\1\e1153645a58c06715f7ce7194235cf0ed6517a80
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-p
-@usecases/src/main/java/com/jhonjto/usecases/CreateNewTodoList.kt,e\c\eccea7b96e3c49b7bcbc31f2ef8eeeec8de4889a
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 o
 ?app/src/main/java/com/jhonjto/todolist/ui/main/MainViewModel.kt,5\8\58e8ab29c4a40edbc6387de7d41e77820eefa4f2
 n
 >app/src/main/java/com/jhonjto/todolist/ui/common/Extensions.kt,f\8\f8b4fe5f99df160485707fe851cbda0afbc89620
-n
->app/src/main/java/com/jhonjto/todolist/ui/main/MainActivity.kt,b\f\bf45406bffbfc95f89b00588d9a87a2137f2e396
 x
 Happ/src/main/java/com/jhonjto/todolist/data/database/TodoListEntities.kt,9\d\9dd249f8592be2b4d98c83ea59b7be4cbacc42cf
-c
-3domain/src/main/java/com/jhonjto/domain/TodoList.kt,4\4\44746d42f58a2df89a10658c45c3ba79d48dc0c5
 j
 :app/src/main/java/com/jhonjto/todolist/data/datamappers.kt,1\6\163fe2fc79441604f018f5612f1a7753f24a4aaa
 m
@@ -114,3 +106,15 @@ c
 3app/src/main/java/com/jhonjto/todolist/ui/add/di.kt,4\4\44eaf856ae8079a9150e60b87a94655f892ac649
 i
 9usecases/src/main/java/com/jhonjto/usecases/DeleteById.kt,2\9\29b83b2e384e3bcb25a4459c57515e11d1be7819
+r
+Busecases/src/main/java/com/jhonjto/usecases/ToggleTodoListCheck.kt,d\3\d3e3b0c4154deab4eefdcf79cb9743f0109d9f1b
+m
+=data/src/main/java/com/jhonjto/data/source/LocalDataSource.kt,7\8\78e7620dedc6e86b704f311d59accec37fb4238d
+v
+Fapp/src/main/java/com/jhonjto/todolist/data/database/RoomDataSource.kt,f\6\f691f5ff212c983dcb510d8304ba6d751aa83411
+s
+Capp/src/main/java/com/jhonjto/todolist/data/database/TodoListDao.kt,d\e\de199d7f4876feba60fc66d75746ba9baf043873
+q
+Aapp/src/main/java/com/jhonjto/todolist/ui/add/AddTodoViewModel.kt,5\6\56436c0bd49833428be3aae549829dae8b58d47a
+p
+@app/src/main/java/com/jhonjto/todolist/ui/add/AddTodoActivity.kt,d\f\df5ba35cb940619cce27caa50fd69f0440f80f3c
